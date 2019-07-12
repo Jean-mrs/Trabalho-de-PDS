@@ -179,14 +179,14 @@ plt.show()
 # In[44]:
 
 
-#  Espectros Sinal Modulado 2
+#  Espectros Sinal Somado
 spectrum = np.fft.fft(sinal_somado)
 freqs = np.fft.fftfreq(len(spectrum))
 magnitude = np.abs(spectrum)    # Amplitude do Sinal
 phase = np.angle(spectrum)  # Fase do Sinal
 plt.figure(figsize=(12, 4))
 plt.plot(freqs, magnitude)
-plt.title('Espectros do Sinal Modulado 2')
+plt.title('Espectros do Sinal Somado')
 plt.ylabel("Magnitude")
 plt.xlabel('Frequência (Hz)')
 
@@ -231,7 +231,7 @@ ax1.set_xlabel('Frequency [rad/sample]')
 # In[46]:
 
 
-# Demodulação do sinal Somado
+# Demodulação do sinal Filtrado
 h1 = filtered_signal * np.cos(2*np.pi*Fc*n2 + np.pi/2)
 plt.figure(figsize=(12, 4))
 plt.plot(n2, h1)
@@ -276,7 +276,7 @@ ipd.Audio(x, rate=Fs1)
 
 # In[50]:
 
-
+#Calculo de Erro Médio Quadrático
 from sklearn import metrics
 erro = metrics.mean_squared_error(x, signal2_orig)
 print(erro)
